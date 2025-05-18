@@ -1,0 +1,63 @@
+Tabelas do programa
+
+Tabela de usuários
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL
+);
+
+Tabela de músicas
+CREATE TABLE musicas (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    artista VARCHAR(100),
+    genero VARCHAR(50)
+);
+
+ Tabela de playlists
+CREATE TABLE playlists (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    usuario_id INTEGER REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+Tabela de relação entre músicas e playlists
+CREATE TABLE playlist_musicas (
+    id SERIAL PRIMARY KEY,
+    playlist_id INTEGER REFERENCES playlists(id) ON DELETE CASCADE,
+    musica_id INTEGER REFERENCES musicas(id) ON DELETE CASCADE
+);
+
+ Tabela de histórico de ações
+CREATE TABLE historico (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER REFERENCES usuarios(id) ON DELETE CASCADE,
+    musica_id INTEGER REFERENCES musicas(id) ON DELETE CASCADE,
+    descricao TEXT,
+    tipo TEXT,
+    data TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+Use essas musicas para testar o programa:
+
+
+INSERT INTO musicas (nome, artista, genero) VALUES 
+('Baile de Favela', 'MC João', 'Funk'),
+('Amor de Verdade', 'MC Kekel ft. MC Rita', 'Funk'),
+('Cheguei', 'Ludmilla', 'Funk'),
+('Agora é Tudo Meu', 'Jerry Smith & Wesley Safadão', 'Funk'),
+('Parado no Bailão', 'MC L da Vinte', 'Funk'),
+('Hoje Eu Vou Parar na Gaiola', 'MC Livinho', 'Funk'),
+('Sento Novinha', 'MC Pedrinho', 'Funk'),
+('Vai Malandra', 'Anitta ft. Tropkillaz & MC Zaac', 'Funk'),
+('Bum Bum Tam Tam', 'MC Fioti', 'Funk'),
+('Oh Novinha', 'MC Don Juan', 'Funk'),
+('Na Raba Toma Tapão', 'Niack', 'Funk'),
+('Desce Pro Play', 'MC Zaac, Anitta, Tyga', 'Funk'),
+('Rebola', 'Kevin o Chris', 'Funk'),
+('Ela é do Tipo', 'MC Kevin o Chris', 'Funk'),
+('Tipo Gin', 'MC Kevin o Chris', 'Funk');
