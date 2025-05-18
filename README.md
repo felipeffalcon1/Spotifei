@@ -61,3 +61,6 @@ Feito por:
 
 Felipe Franco Falcon 
 RA: 22 125 073 - 1 
+
+video de explicação e usabilidade 
+https://youtu.be/ZdEsmn7JCmk
